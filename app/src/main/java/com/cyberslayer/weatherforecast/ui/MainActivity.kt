@@ -1,7 +1,8 @@
-package com.cyberslayer.weatherforecast
+package com.cyberslayer.weatherforecast.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.cyberslayer.weatherforecast.R
 
 class MainActivity : AppCompatActivity() {
 
