@@ -8,9 +8,9 @@ data class CurrentWeatherEntry(
     @SerializedName("last_updated")
     val lastUpdated: String,
     @SerializedName("temp_c")
-    val tempC: Int,
+    val tempC: String,
     @SerializedName("temp_f")
-    val tempF: Double,
+    val tempF: String,
     @SerializedName("is_day")
     val isDay: Int,
     val condition: Condition,
