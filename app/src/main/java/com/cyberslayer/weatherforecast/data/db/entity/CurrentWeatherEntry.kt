@@ -1,4 +1,4 @@
-package com.cyberslayer.weatherforecast.data.db
+package com.cyberslayer.weatherforecast.data.db.entity
 
 import androidx.room.Embedded
 import androidx.room.Entity

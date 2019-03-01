@@ -1,4 +1,4 @@
-package com.cyberslayer.weatherforecast.data.response
+package com.cyberslayer.weatherforecast.data.db.entity
 
 data class Condition(
     val text: String,
