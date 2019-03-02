@@ -38,7 +38,7 @@ class ForecastRepositoryImpl(
     }
 
     private suspend fun initWeatherData() {
-        if(!isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1))){
+        if(isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1))){
             fetchCurrentWeather()
         }
     }
