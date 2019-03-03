@@ -21,7 +21,7 @@ class CurrentWeatherViewModel(
         forecastRepository.getCurrentWeather(isMetric)
     }
 
-    private  val weat = GlobalScope.async {
-        forecastRepository.getCurrentWeather(isMetric)
+    val weatherLocation by lazyDeferred {
+        forecastRepository.getWeatherlocation()
     }
 }

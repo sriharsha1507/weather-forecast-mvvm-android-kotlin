@@ -42,6 +42,12 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     private fun bindUI() = launch {
         val currentWeather = viewModel.weather.await()
 
+        val weatherLocation = viewModel.weatherLocation.await()
+
+        weatherLocation.observe(this@CurrentWeatherFragment, Observer {
+            if (it == null) return@Observer
+        })
+
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
             if (it == null) return@Observer
 
@@ -55,7 +61,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             updateVisibility(it.visibilityDistance)
 
             GlideApp.with(this@CurrentWeatherFragment)
-                .load("http:${it.conditionIconUrl}")
+                .load("https:${it.conditionIconUrl}")
                 .into(imageView_condition_icon)
         })
     }

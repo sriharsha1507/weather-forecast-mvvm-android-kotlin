@@ -5,6 +5,8 @@ import android.preference.Preference
 import android.preference.PreferenceManager
 import com.cyberslayer.weatherforecast.data.db.ForecastDatabase
 import com.cyberslayer.weatherforecast.data.network.*
+import com.cyberslayer.weatherforecast.data.provider.LocationProvider
+import com.cyberslayer.weatherforecast.data.provider.LocationProviderImpl
 import com.cyberslayer.weatherforecast.data.provider.UnitProvider
 import com.cyberslayer.weatherforecast.data.provider.UnitProviderImpl
 import com.cyberslayer.weatherforecast.data.repository.ForecastRepository
@@ -25,10 +27,12 @@ class ForecastApplication : Application(), KodeinAware {
 
         bind() from singleton { ForecastDatabase(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
+        bind() from singleton { instance<ForecastDatabase>().weatherLocationDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { ApixuWeatherApiService(instance()) }
+        bind<LocationProvider>() with singleton { LocationProviderImpl() }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
+        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }
