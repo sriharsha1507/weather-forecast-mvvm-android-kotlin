@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel;
 import com.cyberslayer.weatherforecast.data.repository.ForecastRepository
 import com.cyberslayer.weatherforecast.internal.UnitSystem
 import com.cyberslayer.weatherforecast.internal.lazyDeferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 class CurrentWeatherViewModel(
     forecastRepository: ForecastRepository
@@ -13,6 +15,10 @@ class CurrentWeatherViewModel(
         get() = unitSystem == UnitSystem.METRIC
 
     val weather by lazyDeferred {
+        forecastRepository.getCurrentWeather(isMetric)
+    }
+
+    private  val weat = GlobalScope.async {
         forecastRepository.getCurrentWeather(isMetric)
     }
 }

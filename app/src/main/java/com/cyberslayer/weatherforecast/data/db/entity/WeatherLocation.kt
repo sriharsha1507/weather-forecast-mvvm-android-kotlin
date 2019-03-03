@@ -2,7 +2,7 @@ package com.cyberslayer.weatherforecast.data.db.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class Location(
+data class WeatherLocation(
     val name: String,
     val region: String,
     val country: String,
