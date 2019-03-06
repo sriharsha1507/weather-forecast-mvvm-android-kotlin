@@ -1,6 +1,7 @@
 package com.cyberslayer.weatherforecast.data.network
 
 import com.cyberslayer.weatherforecast.data.network.response.CurrentWeatherResponse
+import com.cyberslayer.weatherforecast.data.network.response.FutureWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -19,6 +20,13 @@ interface ApixuWeatherApiService {
         @Query("q") location: String,
         @Query("lang") lang: String = "en"
     ): Deferred<CurrentWeatherResponse>
+
+    @GET("future.json")
+    fun getFutureWeather(
+        @Query("q") location: String,
+        @Query("days") days: Int,
+        @Query("lang") lang: String = "en"
+    ): Deferred<FutureWeatherResponse>
 
     companion object {
         operator fun invoke(

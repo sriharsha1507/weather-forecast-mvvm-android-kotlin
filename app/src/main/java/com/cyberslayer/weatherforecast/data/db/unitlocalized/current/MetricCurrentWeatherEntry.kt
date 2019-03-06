@@ -1,4 +1,4 @@
-package com.cyberslayer.weatherforecast.data.db.unitlocalized
+package com.cyberslayer.weatherforecast.data.db.unitlocalized.current
 
 import androidx.room.ColumnInfo
 

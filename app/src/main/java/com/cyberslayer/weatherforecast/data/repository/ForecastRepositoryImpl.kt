@@ -2,10 +2,9 @@ package com.cyberslayer.weatherforecast.data.repository
 
 import androidx.lifecycle.LiveData
 import com.cyberslayer.weatherforecast.data.db.CurrentWeatherDao
-import com.cyberslayer.weatherforecast.data.db.ForecastDatabase
 import com.cyberslayer.weatherforecast.data.db.WeatherLocationDao
 import com.cyberslayer.weatherforecast.data.db.entity.WeatherLocation
-import com.cyberslayer.weatherforecast.data.db.unitlocalized.UnitSpecificCurrentWeatherEntry
+import com.cyberslayer.weatherforecast.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
 import com.cyberslayer.weatherforecast.data.network.WeatherNetworkDataSource
 import com.cyberslayer.weatherforecast.data.network.response.CurrentWeatherResponse
 import com.cyberslayer.weatherforecast.data.provider.LocationProvider
@@ -22,6 +21,7 @@ class ForecastRepositoryImpl(
     private val weatherNetworkDataSource: WeatherNetworkDataSource,
     private val locationProvider: LocationProvider
 ) : ForecastRepository {
+
     init {
         weatherNetworkDataSource.downloadedCurrentWeather.observeForever { newCurrentWeather ->
             persistFetchedCurrentWeather(newCurrentWeather)
@@ -38,7 +38,6 @@ class ForecastRepositoryImpl(
 
     override suspend fun getWeatherlocation(): LiveData<WeatherLocation> {
         return withContext(Dispatchers.IO) {
-            initWeatherData()
             return@withContext weatherLocationDao.getLocation()
         }
     }
@@ -60,10 +59,8 @@ class ForecastRepositoryImpl(
             return
         }
 
-
-        if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime)) {
+        if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
             fetchCurrentWeather()
-        }
     }
 
     private suspend fun fetchCurrentWeather() {

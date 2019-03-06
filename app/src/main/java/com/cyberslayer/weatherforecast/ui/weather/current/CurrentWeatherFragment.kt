@@ -46,13 +46,13 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
         weatherLocation.observe(this@CurrentWeatherFragment, Observer {
             if (it == null) return@Observer
+            updateLocation(it.name)
         })
 
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("Oklahoma City")
             updateDateToToday()
             updateTemperatures(it.temperature, it.feelsLikeTemperature)
             updateCondition(it.conditionText)
