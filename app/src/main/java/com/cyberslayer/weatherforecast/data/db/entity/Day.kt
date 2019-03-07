@@ -12,13 +12,13 @@ data class Day(
     @SerializedName("avgvis_km")
     val avgvisKm: Double,
     @SerializedName("avgvis_miles")
-    val avgvisMiles: Int,
+    val avgvisMiles: Double,
     @Embedded(prefix = "condition_")
     val condition: Condition,
     @SerializedName("maxtemp_c")
-    val maxtempC: Int,
+    val maxtempC: Double,
     @SerializedName("maxtemp_f")
-    val maxtempF: Int,
+    val maxtempF: Double,
     @SerializedName("maxwind_kph")
     val maxwindKph: Double,
     @SerializedName("maxwind_mph")
@@ -31,5 +31,5 @@ data class Day(
     val totalprecipIn: Double,
     @SerializedName("totalprecip_mm")
     val totalprecipMm: Double,
-    val uv: Int
+    val uv: Double
 )

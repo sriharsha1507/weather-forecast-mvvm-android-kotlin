@@ -18,14 +18,16 @@ interface ApixuWeatherApiService {
     @GET("current.json")
     fun getCurrentWeather(
         @Query("q") location: String,
-        @Query("lang") lang: String = "en"
+        @Query("lang") languageCode: String = "en"
     ): Deferred<CurrentWeatherResponse>
 
-    @GET("future.json")
+
+    // https://api.apixu.com/v1/forecast.json?key=89e8bd89085b41b7a4b142029180210&q=Los%20Angeles&days=1
+    @GET("forecast.json")
     fun getFutureWeather(
         @Query("q") location: String,
         @Query("days") days: Int,
-        @Query("lang") lang: String = "en"
+        @Query("lang") languageCode: String = "en"
     ): Deferred<FutureWeatherResponse>
 
     companion object {
@@ -33,12 +35,12 @@ interface ApixuWeatherApiService {
             connectivityInterceptor: ConnectivityInterceptor
         ): ApixuWeatherApiService {
             val requestInterceptor = Interceptor { chain ->
+
                 val url = chain.request()
                     .url()
                     .newBuilder()
                     .addQueryParameter("key", API_KEY)
                     .build()
-
                 val request = chain.request()
                     .newBuilder()
                     .url(url)
@@ -46,6 +48,7 @@ interface ApixuWeatherApiService {
 
                 return@Interceptor chain.proceed(request)
             }
+
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
                 .addInterceptor(connectivityInterceptor)
