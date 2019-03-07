@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.cyberslayer.weatherforecast.data.db.entity.CurrentWeatherEntry
+import com.cyberslayer.weatherforecast.data.db.entity.FutureWeatherEntry
 import com.cyberslayer.weatherforecast.data.db.entity.WeatherLocation
 import com.cyberslayer.weatherforecast.data.db.unitlocalized.FutureWeatherDao
 
 @Database(
-    entities = [CurrentWeatherEntry::class, WeatherLocation::class],
+    entities = [CurrentWeatherEntry::class, FutureWeatherEntry::class, WeatherLocation::class],
     version = 1
 )
 
