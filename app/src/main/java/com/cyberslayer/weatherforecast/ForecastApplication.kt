@@ -13,16 +13,15 @@ import com.cyberslayer.weatherforecast.data.provider.UnitProviderImpl
 import com.cyberslayer.weatherforecast.data.repository.ForecastRepository
 import com.cyberslayer.weatherforecast.data.repository.ForecastRepositoryImpl
 import com.cyberslayer.weatherforecast.ui.weather.current.CurrentWeatherViewModelFactory
+import com.cyberslayer.weatherforecast.ui.weather.future.detail.FutureDetailWeatherViewModelFactory
 import com.cyberslayer.weatherforecast.ui.weather.future.list.FutureListWeatherViewModelFactory
 import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.provider
-import org.kodein.di.generic.singleton
+import org.kodein.di.generic.*
+import org.threeten.bp.LocalDate
 
 class ForecastApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
@@ -41,6 +40,7 @@ class ForecastApplication : Application(), KodeinAware {
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
         bind() from provider { FutureListWeatherViewModelFactory(instance(), instance()) }
+        bind() from factory{ detailDate: LocalDate -> FutureDetailWeatherViewModelFactory(detailDate,instance(),instance())}
     }
 
     override fun onCreate() {
