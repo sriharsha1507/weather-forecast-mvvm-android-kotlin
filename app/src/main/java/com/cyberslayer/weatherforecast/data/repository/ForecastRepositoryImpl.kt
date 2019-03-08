@@ -6,6 +6,7 @@ import com.cyberslayer.weatherforecast.data.db.WeatherLocationDao
 import com.cyberslayer.weatherforecast.data.db.entity.WeatherLocation
 import com.cyberslayer.weatherforecast.data.db.unitlocalized.FutureWeatherDao
 import com.cyberslayer.weatherforecast.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
+import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.detail.UnitSpecificDetailFutureWeatherEntry
 import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.cyberslayer.weatherforecast.data.network.FORECAST_DAYS_COUNT
 import com.cyberslayer.weatherforecast.data.network.WeatherNetworkDataSource
@@ -115,6 +116,17 @@ class ForecastRepositoryImpl(
             locationProvider.getPreferredLocationString(),
             Locale.getDefault().language
         )
+    }
+
+    override suspend fun getFutureWeatherByDate(
+        date: LocalDate,
+        metric: Boolean
+    ): LiveData<out UnitSpecificDetailFutureWeatherEntry> {
+        return withContext(Dispatchers.IO) {
+            initWeatherData()
+            return@withContext if (metric) futureWeatherDao.getDetailedWeatherByDateMetric(date)
+            else futureWeatherDao.getDetailedWeatherByDateImperial(date)
+        }
     }
 
     private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
