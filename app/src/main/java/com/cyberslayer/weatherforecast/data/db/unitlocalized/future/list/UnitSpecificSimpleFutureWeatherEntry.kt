@@ -1,4 +1,4 @@
-package com.cyberslayer.weatherforecast.data.db.unitlocalized.future
+package com.cyberslayer.weatherforecast.data.db.unitlocalized.future.list
 
 import org.threeten.bp.LocalDate
 

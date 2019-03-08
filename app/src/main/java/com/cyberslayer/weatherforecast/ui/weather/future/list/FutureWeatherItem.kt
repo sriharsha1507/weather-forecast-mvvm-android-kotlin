@@ -1,8 +1,8 @@
 package com.cyberslayer.weatherforecast.ui.weather.future.list
 
 import com.cyberslayer.weatherforecast.R
-import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.MetricSimpleFutureWeatherEntry
-import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.list.MetricSimpleFutureWeatherEntry
+import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.cyberslayer.weatherforecast.internal.glide.GlideApp
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder

@@ -6,7 +6,7 @@ import com.cyberslayer.weatherforecast.data.db.WeatherLocationDao
 import com.cyberslayer.weatherforecast.data.db.entity.WeatherLocation
 import com.cyberslayer.weatherforecast.data.db.unitlocalized.FutureWeatherDao
 import com.cyberslayer.weatherforecast.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
-import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.cyberslayer.weatherforecast.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.cyberslayer.weatherforecast.data.network.FORECAST_DAYS_COUNT
 import com.cyberslayer.weatherforecast.data.network.WeatherNetworkDataSource
 import com.cyberslayer.weatherforecast.data.network.response.CurrentWeatherResponse
